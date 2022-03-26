@@ -25,5 +25,5 @@ export const SpanText = styled.span`
 export const NoteStyle = styled.div`
   font-size: 1rem;
   padding: 10px;
-  color: red;
+  color: #fadc92;
 `;
