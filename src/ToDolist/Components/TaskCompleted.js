@@ -1,26 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Heading, SpanText } from "../JSS";
 import { actionDellTaskCompleted } from "../Redux/actions";
 class TaskCompleted extends Component {
   render() {
     return (
       <div>
-        <h3 className="h4"> Task completed</h3>
+        <Heading className="h4"> Task completed</Heading>
         <ul className="list-group">
           {this.props.taskCompleted?.map((task) => {
             return (
               <li className="list-group-item" key={task.completedId}>
-                {task.task}
-                <div className="float-right">
-                  <button
-                    type="button"
-                    className="btn btn-outline-secondary mr-2"
-                    onClick={() => {
-                      this.props.dellTaskComplete(task.task, task.id);
-                    }}
-                  >
-                    <i class="fa-solid fa-trash-can"></i>
-                  </button>
+                <div className="d-flex align-items-center justify-content-between">
+                  <SpanText>{task.task}</SpanText>
+                  <div className="">
+                    <button
+                      type="button"
+                      className="btn btn-outline-secondary mr-2"
+                      onClick={() => {
+                        this.props.dellTaskComplete(task.task, task.id);
+                      }}
+                    >
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                  </div>
                 </div>
               </li>
             );

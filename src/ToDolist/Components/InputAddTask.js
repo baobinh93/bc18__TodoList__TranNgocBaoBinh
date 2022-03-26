@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { actionAddTask } from "../Redux/actions";
 import ReactDom from "react-dom";
+import { Button } from "../JSS";
 class InputAddTask extends Component {
   constructor(props) {
     super(props);
@@ -25,9 +26,20 @@ class InputAddTask extends Component {
           placeholder="Task name..."
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
+          onKeyDown={(e) => {
+            if (e.keyCode == 13) {
+              let inputValue = this.getInputValue();
+              if (inputValue.trim() !== "") {
+                this.props.addTask(inputValue);
+                this.resetInput();
+              } else {
+                this.resetInput();
+              }
+            }
+          }}
         />
         <div className="input-group-append">
-          <button
+          <Button
             className="btn btn-outline-secondary"
             type="button"
             onClick={() => {
@@ -41,7 +53,7 @@ class InputAddTask extends Component {
             }}
           >
             + Add task
-          </button>
+          </Button>
         </div>
       </div>
     );

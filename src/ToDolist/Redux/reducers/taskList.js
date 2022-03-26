@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils";
 import { ADD_TASK, DELL_TASK, EDIT_TASK } from "../contants";
 
 let dataFromLocalStorage = JSON.parse(localStorage.getItem("dataTodoList"));

@@ -6,6 +6,7 @@ import {
   actionEditTask,
 } from "../Redux/actions/index";
 import ReactDom from "react-dom";
+import { Heading, SpanText } from "../JSS";
 class TaskToDo extends Component {
   editableTask = (_id) => {
     let spanTask = document.getElementById(_id);
@@ -34,55 +35,65 @@ class TaskToDo extends Component {
   render() {
     return (
       <div className="my-5">
-        <h3 className="h4"> Task to do</h3>
+        <Heading className="h4"> Task to do</Heading>
 
         <ul className="list-group">
           {this.props.taskList?.map((task) => {
             return (
               <li className="list-group-item" key={task.id}>
-                <span
-                  contentEditable="false"
-                  id={"task" + task.id}
-                  onBlur={() => {
-                    let newTask = this.getValueToState("task" + task.id);
-                    this.notEditableTask("task" + task.id);
-                    this.resetColorBtn("btn" + task.id);
-                    this.props.editTask(task.task, task.id, newTask);
-                  }}
-                >
-                  {task.task}
-                </span>
-                <div className="float-right">
-                  <button
-                    type="button"
-                    className="btn btn-outline-secondary mr-2"
-                    onClick={() => {
-                      return this.props.dellTask(task.task, task.id);
+                <div className="d-flex align-items-center justify-content-between">
+                  <SpanText
+                    contentEditable="false"
+                    id={"task" + task.id}
+                    onBlur={() => {
+                      let newTask = this.getValueToState("task" + task.id);
+                      this.notEditableTask("task" + task.id);
+                      this.resetColorBtn("btn" + task.id);
+                      this.props.editTask(task.task, task.id, newTask);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.keyCode == 13) {
+                        let newTask = this.getValueToState("task" + task.id);
+                        this.notEditableTask("task" + task.id);
+                        this.resetColorBtn("btn" + task.id);
+                        this.props.editTask(task.task, task.id, newTask);
+                      }
                     }}
                   >
-                    <i class="fa-solid fa-trash-can"></i>
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-secondary mr-2"
-                    id={"btn" + task.id}
-                    onClick={() => {
-                      this.editableTask("task" + task.id);
-                      this.changeColorBtn("btn" + task.id);
-                    }}
-                  >
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-secondary"
-                    onClick={() => {
-                      this.props.addTaskComplete(task);
-                      this.props.dellTask(task.task, task.id);
-                    }}
-                  >
-                    <i className="fa-solid fa-check"></i>
-                  </button>
+                    {task.task}
+                  </SpanText>
+                  <div className="">
+                    <button
+                      type="button"
+                      className="btn btn-outline-secondary mr-2"
+                      onClick={() => {
+                        return this.props.dellTask(task.task, task.id);
+                      }}
+                    >
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-outline-secondary mr-2"
+                      id={"btn" + task.id}
+                      onClick={() => {
+                        this.editableTask("task" + task.id);
+                        this.changeColorBtn("btn" + task.id);
+                      }}
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-outline-secondary"
+                      onClick={() => {
+                        this.props.addTaskComplete(task);
+                        this.props.dellTask(task.task, task.id);
+                      }}
+                    >
+                      <i className="fa-solid fa-check"></i>
+                    </button>
+                  </div>
                 </div>
               </li>
             );
