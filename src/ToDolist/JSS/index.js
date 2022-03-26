@@ -21,3 +21,9 @@ export const Button = styled.button`
 export const SpanText = styled.span`
   padding: 5px 10px;
 `;
+
+export const NoteStyle = styled.div`
+  font-size: 1rem;
+  padding: 10px;
+  color: red;
+`;

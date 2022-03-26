@@ -3,6 +3,7 @@ import TaskToDo from "./Components/TaskToDo";
 import TaskCompleted from "./Components/TaskCompleted";
 import InputAddTask from "./Components/InputAddTask";
 import { Container, Heading } from "./JSS";
+import Note from "./Components/Note";
 export default class ToDoList extends Component {
   render() {
     return (
@@ -11,6 +12,7 @@ export default class ToDoList extends Component {
         <InputAddTask />
         <TaskToDo />
         <TaskCompleted />
+        <Note />
       </Container>
     );
   }
